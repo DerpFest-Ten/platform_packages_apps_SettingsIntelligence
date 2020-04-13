@@ -22,19 +22,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_scrollFlags="scroll|enterAlways">
-    <Toolbar
-        android:id="@+id/search_toolbar"
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/search_bar_blur"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/search_bar_height"
-        android:contentInsetStart="0dp"
-        android:contentInsetStartWithNavigation="0dp">
-        <SearchView
-            android:id="@+id/search_view"
+        android:layout_height="match_parent"
+        app:blurOverlayColor="@color/blur_floating_bg">
+        <Toolbar
+            android:id="@+id/search_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:iconifiedByDefault="false"
-            android:imeOptions="actionSearch|flagNoExtractUi"
-            android:searchIcon="@null"
-            android:queryBackground="@android:color/transparent"/>
-    </Toolbar>
+            android:layout_height="@dimen/search_bar_height"
+            android:contentInsetStart="0dp"
+            android:contentInsetStartWithNavigation="0dp">
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:iconifiedByDefault="false"
+                android:imeOptions="actionSearch|flagNoExtractUi"
+                android:searchIcon="@null"
+                android:queryBackground="@android:color/transparent"/>
+        </Toolbar>
+    </eightbitlab.com.blurview.BlurView>
 </com.google.android.material.card.MaterialCardView>

@@ -24,6 +24,7 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.VisibleForTesting;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +50,9 @@ import com.android.settings.intelligence.search.savedqueries.SavedQueryControlle
 import com.android.settings.intelligence.search.savedqueries.SavedQueryViewHolder;
 
 import java.util.List;
+
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 
 /**
  * This fragment manages the lifecycle of indexing and searching.
@@ -158,6 +162,12 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         final Activity activity = getActivity();
         final View view = inflater.inflate(R.layout.search_panel, container, false);
         setResultsContainerPaddingTop(view);
+        final View decorView = activity.getWindow().getDecorView();
+        final ViewGroup root = (ViewGroup) decorView.findViewById(android.R.id.content);
+        final BlurView searchBarBlur = view.findViewById(R.id.search_bar_blur);
+        final Drawable windowBackground = decorView.getBackground();
+        searchBarBlur.setupWith(root).setFrameClearDrawable(windowBackground).
+                setBlurAlgorithm(new RenderScriptBlur(getContext()));
         mResultsRecyclerView = view.findViewById(R.id.list_results);
         mResultsRecyclerView.setAdapter(mSearchAdapter);
         mResultsRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
